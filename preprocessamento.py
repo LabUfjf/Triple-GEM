@@ -82,7 +82,7 @@ def extractValue(imgOriginal):
 
 def extraiContornos(img, imgThresh):
 	im2,contours,hierarchy = cv2.findContours(imgThresh, 1, 2)
-	for i in xrange(len(contours)):		
+	for i in range(len(contours)):		
 		cnt = contours[i]
 		rect = cv2.minAreaRect(cnt)
 		#if rect[1][0] > 100 or rect[1][1] > 100:
@@ -134,19 +134,19 @@ def realcaTracos(img):
 	cv2.imshow(img_corr)
 
 def clusteringKmeans(img):
-	Z = img.reshape((-1,3)) 
+    Z = img.reshape((-1,3)) 
     # convert to np.float32
-	Z = np.float32(Z)
+    Z = np.float32(Z)
 
-	criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-	K = 6
-	ret,label,center=cv2.kmeans(Z,K,None,criteria,10,cv2.KMEANS_RANDOM_CENTERS)
-    
-	center = np.uint8(center)
-	res = center[label.flatten()]
-	res2 = res.reshape((img.shape))
-   	cv2.imshow('res2',res2)
-	return res2
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
+    K = 6
+    ret,label,center=cv2.kmeans(Z,K,None,criteria,10,cv2.KMEANS_RANDOM_CENTERS)
+ 
+    center = np.uint8(center)
+    res = center[label.flatten()]
+    res2 = res.reshape((img.shape))
+    cv2.imshow('res2',res2)
+    return res2
 
 if __name__ == '__main__':
 	numRun = '494'
